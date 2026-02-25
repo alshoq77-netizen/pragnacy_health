@@ -1,296 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>دليل الحامل | تغذية، ممنوعات، ونصائح</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مجلة دليل الحامل</title>
 
-  <style>
-    :root{
-      --bg:#fff9f0;
-      --card:#fff;
-      --accent:#d17b00;
-    }
-    *{box-sizing:border-box}
-    body { margin:0; font-family:"Tajawal",sans-serif; background:var(--bg); color:#222; line-height:1.4; }
-    header { text-align:center; padding:20px; background:#ffe9c4; }
-    header h1 { margin:0; font-size:1.8rem; }
-    header p { margin:6px 0 0; color:#666; }
-    section { padding:20px; max-width:1200px; margin:auto; }
-    section h2 { border-right:4px solid var(--accent); padding-right:10px; font-size:1.2rem; margin-bottom:14px; display:flex; gap:8px; align-items:center; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
-    .card { background:var(--card); border:1px solid #eee; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05); display:flex; flex-direction:column; }
-    .media { width:100%; aspect-ratio:4/5; overflow:hidden; background:linear-gradient(180deg,#fafafa,#f0f0f0); display:flex; align-items:center; justify-content:center; }
-    .media img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .18s ease; }
-    .card:hover .media img{ transform: scale(1.03); }
-    figcaption { padding:10px; font-size:0.92rem; color:#444; margin-top:auto; }
-    footer { text-align:center; padding:20px; font-size:0.85rem; color:#777; margin-top:20px; }
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
 
-    /* popup lightbox */
-    .popup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.86);
-      z-index: 9999;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    }
-    .popup .box { max-width:1100px; width:100%; max-height:90vh; display:flex; gap:12px; align-items:center; justify-content:center; position:relative; }
-    .popup img { max-width:100%; max-height:90vh; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-    .popup .close { position:absolute; top:-10px; left:-10px; font-size:34px; color:#fff; cursor:pointer; background:transparent; border:none; padding:6px 10px; }
-    /* responsive tweaks */
-    @media (max-width:520px){
-      .grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
-      section h2 { font-size:1rem; }
-    }
-  </style>
+<style>
+:root{
+  --bg:#f8f5f1;
+  --primary:#c7a17a;
+  --dark:#3e3e3e;
+  --light:#ffffff;
+}
+
+body{
+  margin:0;
+  font-family:"Tajawal",sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  scroll-behavior:smooth;
+}
+
+/* غلاف المجلة */
+.cover{
+  height:100vh;
+  background:linear-gradient(135deg,#fdf6ec,#f4e9dc);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.cover h1{
+  font-size:3rem;
+  margin:0;
+  color:var(--primary);
+}
+
+.cover p{
+  margin-top:15px;
+  font-size:1.2rem;
+  color:#777;
+}
+
+.btn{
+  margin-top:30px;
+  padding:12px 28px;
+  border:none;
+  background:var(--primary);
+  color:white;
+  font-size:1rem;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.btn:hover{
+  opacity:0.85;
+}
+
+/* الفهرس */
+.toc{
+  padding:60px 20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.toc h2{
+  text-align:center;
+  margin-bottom:30px;
+  color:var(--primary);
+}
+
+.toc ul{
+  list-style:none;
+  padding:0;
+}
+
+.toc li{
+  padding:15px;
+  margin:10px 0;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.toc li:hover{
+  transform:translateX(-5px);
+}
+
+/* صفحات المجلة */
+.page{
+  min-height:100vh;
+  padding:60px 20px;
+  background:white;
+  margin:40px auto;
+  max-width:1100px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.page h2{
+  border-right:5px solid var(--primary);
+  padding-right:10px;
+  margin-bottom:30px;
+  color:var(--primary);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,0.06);
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+}
+.card img{
+  width:100%;
+  display:block;
+}
+.card p{
+  padding:10px;
+  font-size:0.9rem;
+  text-align:center;
+}
+
+/* الفوتر */
+footer{
+  text-align:center;
+  padding:40px 20px;
+  color:#999;
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>دليل الحامل | تغذية، ممنوعات، ونصائح</h1>
-    <p>صفحة توعوية قسم الصيدلة - مستشفى بدية</p>
-  </header>
+<!-- غلاف -->
+<section class="cover">
+  <h1>مجلة دليل الحامل</h1>
+  <p>تغذية • نصائح • ممنوعات • صحة الأم والجنين</p>
+  <button class="btn" onclick="document.getElementById('toc').scrollIntoView()">ابدئي التصفح</button>
+</section>
 
-  <!-- تبدأ الأقسام: المحتوى مأخوذ بالكامل من ملفك المرفوع -->
-  <!-- قسم: الاطعمة وفوائدها -->
-  <section>
-    <h2>🟢 الاطعمة وفوائدها للحامل</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/whRPTQ91/Whats-App-Image-2025-12-08-at-9-50-42-AM-1.jpg" alt="رطب - فوائد" /></div><figcaption>فوائد غذائية للرطب للحامل.</figcaption></figure>
+<!-- فهرس -->
+<section class="toc" id="toc">
+  <h2>فهرس المجلة</h2>
+  <ul>
+    <li onclick="go('food')">الأطعمة وفوائدها</li>
+    <li onclick="go('pumpkin')">اليقطين وفوائده</li>
+    <li onclick="go('forbidden')">الممنوعات أثناء الحمل</li>
+    <li onclick="go('sports')">الرياضة والحامل</li>
+    <li onclick="go('tips')">نصائح ومعلومات</li>
+  </ul>
+</section>
 
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/x8B88d6v/Whats-App-Image-2025-12-08-at-9-50-42-AM-2.jpg" alt="موز - فوائد" /></div><figcaption>فوائد غذائية للموز للحامل.</figcaption></figure>
-
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/k2R52v6D/Whats-App-Image-2025-12-09-at-9-41-30-AM-4.jpg" alt="يوسفي" /></div><figcaption>فوائد غذائية لليوسفي للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/wrwZXg7P/Whats-App-Image-2025-12-09-at-9-41-31-AM.jpg" alt="فواكه مجففة" /></div><figcaption>فوائد غذائية للفواكة المجففة للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/tps3R0Sy/Whats-App-Image-2025-12-09-at-9-41-30-AM-1.jpg" alt="رمان" /></div><figcaption>فوائد غذائية للرمان للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/hR2S6Qwh/Whats-App-Image-2025-12-09-at-9-41-30-AM-2.jpg" alt="سبانخ" /></div><figcaption>فوائد غذائية للسبانخ للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/KSZsNwR/Whats-App-Image-2025-12-09-at-9-41-30-AM-3.jpg" alt="خيار" /></div><figcaption>فوائد غذائية للخيار للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/j9b7r5QD/Whats-App-Image-2025-12-08-at-9-50-43-AM.jpg" alt="كيوي" /></div><figcaption>الكيوي وفوائدة.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/DfRQqvyN/Whats-App-Image-2025-12-08-at-9-50-50-AM-3.jpg" alt="طماطم" /></div><figcaption>الطماطم وفوائدة.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/MmHpj8M/Whats-App-Image-2025-12-08-at-9-50-43-AM-1.jpg" alt="بيض" /></div><figcaption>فوائد غذائية للبيض للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/MDg66DY8/Whats-App-Image-2025-12-08-at-9-50-43-AM-2.jpg" alt="بيض 2" /></div><figcaption>فوائد غذائية للبيض.</figcaption></figure>
-
-      <!-- (باقي صور هذا القسم أُبقيت كما في الملف الأصلي) -->
-    </div>
-  </section>
-
-  <!-- قسم: اليقطين -->
-  <section>
-    <h2>🟢 اليقطين وفوائدة</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/1YkBXJ2y/Whats-App-Image-2025-12-08-at-9-50-51-AM.jpg" alt="اليقطين1" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/ZRVDVgB4/Whats-App-Image-2025-12-08-at-9-50-50-AM.jpg" alt="اليقطين2" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/C3S82gX6/Whats-App-Image-2025-12-08-at-9-50-49-AM-1.jpg" alt="اليقطين3" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/R4Yg0M76/Whats-App-Image-2025-12-08-at-9-50-49-AM-2.jpg" alt="اليقطين4" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/PZ8sYp63/Whats-App-Image-2025-12-08-at-9-50-49-AM-3.jpg" alt="اليقطين5" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/KjqnHHBS/Whats-App-Image-2025-12-08-at-9-50-50-AM-1.jpg" alt="اليقطين6" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/QvL360ph/Whats-App-Image-2025-12-08-at-9-50-48-AM-3.jpg" alt="اليقطين7" /></div><figcaption>ما هو اليقطين.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: الممنوعات -->
-  <section>
-    <h2>🔴 الممنوعات أثناء الحمل</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/3YSzHP0c/Whats-App-Image-2025-12-08-at-9-50-45-AM-4.jpg" alt="ممنوعات" /></div><figcaption>7 ممنوعات خلال الحمل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/fdKJF3bq/Whats-App-Image-2025-12-08-at-9-50-45-AM-2.jpg" alt="ممنوعات-كحول" /></div><figcaption>تجنبي الكحول تماماً.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/TD2ms9wd/Whats-App-Image-2025-12-08-at-9-50-43-AM-3.jpg" alt="ممنوعات-اكل" /></div><figcaption>الاكل الممنوع للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/HDgMCpBP/Whats-App-Image-2025-12-08-at-9-50-44-AM-1.jpg" alt="ممنوعات-اطعمة" /></div><figcaption>الاطعمة الممنوعة للحامل</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/ynsCc2cK/Whats-App-Image-2025-12-08-at-9-50-45-AM-3.jpg" alt="ممنوعات-سوشي" /></div><figcaption>السوشي من الممنوعات للحامل</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/qY6M2VYv/Whats-App-Image-2025-12-08-at-9-50-45-AM-1.jpg" alt="ممنوعات-بيض" /></div><figcaption>تأكدي من عدم وجود بيض نيء في الطعام</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/Kj117FxM/Whats-App-Image-2025-12-08-at-9-50-43-AM-4.jpg" alt="ممنوعات-تدخين" /></div><figcaption>التدخين مضر لكِ وللجنين.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/yFyRpxtw/Whats-App-Image-2025-12-08-at-9-50-45-AM.jpg" alt="ممنوعات-بوتوكس" /></div><figcaption>بوتوكس وحامض هيلاروني من الممنوعات.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: الرياضة والحامل -->
-  <section>
-    <h2>🟣 الرياضة والحامل</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/ybXCB3d/Whats-App-Image-2025-12-08-at-9-50-53-AM.jpg" alt="رياضة1" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/Y42GSzV9/Whats-App-Image-2025-12-08-at-9-50-54-AM-2.jpg" alt="رياضة2" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/mCGVZmvp/Whats-App-Image-2025-12-08-at-9-50-53-AM-1.jpg" alt="رياضة3" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/XrcBfBCB/Whats-App-Image-2025-12-08-at-9-50-53-AM-2.jpg" alt="رياضة4" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/SLLxG7y/Whats-App-Image-2025-12-08-at-9-50-53-AM-3.jpg" alt="رياضة5" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/PZRS4jNk/Whats-App-Image-2025-12-08-at-9-50-54-AM-1.jpg" alt="رياضة6" /></div><figcaption>الرياضة والحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/NgCW668y/Whats-App-Image-2025-12-08-at-9-50-52-AM-2.jpg" alt="رياضة7" /></div><figcaption>الرياضة للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/6cdjDssK/Whats-App-Image-2025-12-08-at-9-50-54-AM.jpg" alt="رياضة8" /></div><figcaption>الرياضة للحامل.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: نصائح ومعلومات -->
-  <section>
-    <h2>🟣 نصائح ومعلومات</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/yFKQp486/Whats-App-Image-2025-12-08-at-9-50-51-AM-3.jpg" alt="نصيحة1" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/G4Kstzdy/Whats-App-Image-2025-12-08-at-9-50-52-AM.jpg" alt="نصيحة2" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/ynTsgpN7/Whats-App-Image-2025-12-08-at-9-50-51-AM-2.jpg" alt="نصيحة3" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/HfnyVNdf/Whats-App-Image-2025-12-08-at-9-50-52-AM-1.jpg" alt="نصيحة4" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/RG0TmjjB/Whats-App-Image-2025-12-08-at-9-50-51-AM-1.jpg" alt="نصيحة5" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/N6pC26T8/Whats-App-Image-2025-12-08-at-9-50-54-AM-3.jpg" alt="نصيحة6" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/ZzZK0tL6/Whats-App-Image-2025-12-08-at-9-50-55-AM.jpg" alt="نصيحة7" /></div><figcaption>نصائح ومعلومات.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: عناصر غذائية -->
-  <section>
-    <h2>🟡 عناصر غذائية تدعم نمو الجنين</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/jZVkDHjm/Whats-App-Image-2025-12-08-at-9-50-42-AM.jpg" alt="عنصر-حمض-الفوليك" /></div><figcaption>اهمية حمض الفوليك للحامل.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/wTK3zwj/Whats-App-Image-2025-12-08-at-9-50-47-AM-1.jpg" alt="عنصر2" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/3yBbYwR9/Whats-App-Image-2025-12-08-at-9-50-46-AM-1.jpg" alt="عنصر3" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/8TyhL6R/Whats-App-Image-2025-12-08-at-9-50-47-AM.jpg" alt="عنصر4" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/LDdStsNL/Whats-App-Image-2025-12-08-at-9-50-47-AM-3.jpg" alt="عنصر5" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/MDY8yGDr/Whats-App-Image-2025-12-08-at-9-50-47-AM-2.jpg" alt="عنصر6" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/wr7sNFqw/Whats-App-Image-2025-12-08-at-9-50-46-AM.jpg" alt="عنصر7" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/BVNvk335/Whats-App-Image-2025-12-08-at-9-50-46-AM-4.jpg" alt="عنصر8" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/S7WdTtpX/Whats-App-Image-2025-12-08-at-9-50-46-AM-3.jpg" alt="عنصر9" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/zHPyfr6j/Whats-App-Image-2025-12-08-at-9-50-46-AM-2.jpg" alt="عنصر10" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/bj0BXy4V/Whats-App-Image-2025-12-09-at-9-41-29-AM-2.jpg" alt="عنصر11" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/B23jw0fR/Whats-App-Image-2025-12-09-at-9-41-29-AM-1.jpg" alt="عنصر12" /></div><figcaption>ارشادات.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: الحمل والغثيان -->
-  <section>
-    <h2>🟡 الحمل والغثيان</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/1Y8mPfRs/Whats-App-Image-2025-12-08-at-9-50-48-AM-2.jpg" alt="غثيان1" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/S7DbR67L/Whats-App-Image-2025-12-08-at-9-50-49-AM.jpg" alt="غثيان2" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/2T0v19Z/Whats-App-Image-2025-12-08-at-9-50-48-AM-4.jpg" alt="غثيان3" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/dNd1SQ3/Whats-App-Image-2025-12-08-at-9-50-48-AM.jpg" alt="غثيان4" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/KpbTYGJ6/Whats-App-Image-2025-12-08-at-9-50-48-AM-1.jpg" alt="غثيان5" /></div><figcaption>ارشادات.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/yFz6DRPd/Whats-App-Image-2025-12-08-at-9-50-50-AM-2.jpg" alt="غثيان6" /></div><figcaption>ارشادات.</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- قسم: ادعية -->
-  <section>
-    <h2>🟡 ادعية</h2>
-    <div class="grid">
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/Kjx1fXHf/Whats-App-Image-2025-12-09-at-9-11-34-AM.jpg" alt="دعاء1" /></div><figcaption>دعاء.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/NnFc468N/Whats-App-Image-2025-12-09-at-9-11-34-AM-1.jpg" alt="دعاء2" /></div><figcaption>دعاء.</figcaption></figure>
-
-      <figure class="card"><div class="media"><img src="https://i.ibb.co/mrxRjYvc/Whats-App-Image-2025-12-09-at-9-11-35-AM.jpg" alt="دعاء3" /></div><figcaption>دعاء.</figcaption></figure>
-    </div>
-  </section>
-
-  <footer>
-    By: Jouharah.IT & Maya Alhashmi.Ph
-  </footer>
-
-  <!-- popup (lightbox) -->
-  <div id="popup" class="popup" onclick="closePopup(event)">
-    <div class="box">
-      <button class="close" aria-label="close" onclick="closePopup(event)">&times;</button>
-      <img id="popupImg" src="" alt="تكبير الصورة" />
+<!-- صفحة 1 -->
+<section class="page" id="food">
+  <h2>الأطعمة وفوائدها للحامل</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="ضع_رابط_صورة_هنا">
+      <p>فوائد غذائية مهمة للحامل.</p>
     </div>
   </div>
+</section>
+
+<!-- صفحة 2 -->
+<section class="page" id="pumpkin">
+  <h2>اليقطين وفوائده</h2>
+  <div class="grid"></div>
+</section>
+
+<!-- صفحة 3 -->
+<section class="page" id="forbidden">
+  <h2>الممنوعات أثناء الحمل</h2>
+  <div class="grid"></div>
+</section>
+
+<!-- صفحة 4 -->
+<section class="page" id="sports">
+  <h2>الرياضة والحامل</h2>
+  <div class="grid"></div>
+</section>
+
+<!-- صفحة 5 -->
+<section class="page" id="tips">
+  <h2>نصائح ومعلومات</h2>
+  <div class="grid"></div>
+</section>
+
+<footer>
+  مجلة توعوية - مستشفى بدية | By Jouharah.IT
+</footer>
 
 <script>
-  // فتح/اغلاق popup
-  function openPopup(src){
-    const p = document.getElementById('popup');
-    const img = document.getElementById('popupImg');
-    img.src = src;
-    p.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closePopup(e){
-    // إذا نقر المستخدم على الخلفية أو زر الإغلاق نغلق
-    if(e && e.type === 'click'){
-      const target = e.target;
-      if(target.id !== 'popup' && !target.classList.contains('close')) return;
-    }
-    const p = document.getElementById('popup');
-    p.style.display = 'none';
-    document.getElementById('popupImg').src = '';
-    document.body.style.overflow = '';
-  }
-
-  // أضف خاصية التكبير لكل الصور داخل .media تلقائياً (حتى لو نسيت أحدها)
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.media img').forEach(img=>{
-      // إذا لم يكن مفعلا مسبقاً
-      if(!img.dataset.openAttach){
-        img.dataset.openAttach = '1';
-        img.addEventListener('click', ()=> openPopup(img.src));
-      }
-    });
-
-    // دعم إغلاق بالـ ESC
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape'){
-        const p = document.getElementById('popup');
-        if(p.style.display === 'flex') closePopup();
-      }
-    });
-  });
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
 </script>
 
 </body>
-</html>
-    
-  </body>
-  
 </html>
